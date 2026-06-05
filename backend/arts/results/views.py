@@ -1,5 +1,5 @@
 from unittest import result
-
+from django.core.cache import cache
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
@@ -62,6 +62,14 @@ class TeamLeaderBoardView(APIView):
             active_year = AcademicYear.objects.filter(id=year_id).first()
         else:
             active_year = AcademicYear.objects.filter(is_active=True).order_by('-year').first()
+            year_id = active_year.id if active_year else None
+        
+        cache_key = f"leaderboard_year_{year_id}"
+
+        cached_data = cache.get(cache_key)
+        if cached_data:
+            print("this is from chaceh")
+            return Response(cached_data)
         
         if not active_year:
             return Response({
@@ -133,7 +141,7 @@ class TeamLeaderBoardView(APIView):
         for rank, entry in enumerate(dept_leaderboard, start=1):
             entry["rank"] = rank
 
-        return Response({
+        response_data = {
             "academic_year": {
                 "id": active_year.id,
                 "name": active_year.name,
@@ -141,13 +149,18 @@ class TeamLeaderBoardView(APIView):
             },
             "teams": team_leaderboard,
             "departments": dept_leaderboard
-        })
+        }
 
+        # Store calculated leaderboard in Redis cache for 1 hour (3600 seconds)
+        cache.set(cache_key, response_data, timeout=3600)
+
+        return Response(response_data)
 
 
         
 class PublishResultView(APIView):
     permission_classes = [IsJudge]
+    
     def post(self, request, program_id):
         result, created = Result.objects.get_or_create(
             program_id=program_id
@@ -157,6 +170,12 @@ class PublishResultView(APIView):
         result.save()
 
         calculate_program_result(result)
+
+        # Invalidate cached leaderboards so they are updated on the next load
+        if hasattr(cache, 'delete_pattern'):
+            cache.delete_pattern("leaderboard_year_*")
+        else:
+            cache.clear()
 
         return Response({
             "message": "Result published and calculated successfully"
