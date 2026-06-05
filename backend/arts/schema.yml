@@ -1,0 +1,2217 @@
+openapi: 3.0.3
+info:
+  title: Arts and Sports API
+  version: 1.0.0
+  description: Arts and Sports API for managing arts and sports events
+paths:
+  /api/announcements/:
+    get:
+      operationId: announcements_list
+      tags:
+      - announcements
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Announcement'
+          description: ''
+    post:
+      operationId: announcements_create
+      tags:
+      - announcements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Announcement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Announcement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Announcement'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Announcement'
+          description: ''
+  /api/announcements/{id}/:
+    get:
+      operationId: announcements_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - announcements
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Announcement'
+          description: ''
+  /api/announcements/schedule/:
+    get:
+      operationId: announcements_schedule_list
+      tags:
+      - announcements
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+    post:
+      operationId: announcements_schedule_create
+      tags:
+      - announcements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+  /api/announcements/schedule/{id}/:
+    get:
+      operationId: announcements_schedule_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - announcements
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+    put:
+      operationId: announcements_schedule_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - announcements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+    patch:
+      operationId: announcements_schedule_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - announcements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProgramSchedule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProgramSchedule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProgramSchedule'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+  /api/auth/academic-years/:
+    get:
+      operationId: auth_academic_years_list
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AcademicYear'
+          description: ''
+  /api/auth/change-password/:
+    post:
+      operationId: auth_change_password_create
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/departments/:
+    get:
+      operationId: auth_departments_list
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+          description: ''
+    post:
+      operationId: auth_departments_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Department'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Department'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+  /api/auth/departments/{id}/:
+    get:
+      operationId: auth_departments_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentDetail'
+          description: ''
+    put:
+      operationId: auth_departments_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Department'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Department'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+    patch:
+      operationId: auth_departments_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDepartment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDepartment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDepartment'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+    delete:
+      operationId: auth_departments_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/auth/login/:
+    post:
+      operationId: auth_login_create
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/logout/:
+    post:
+      operationId: auth_logout_create
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/me/:
+    get:
+      operationId: auth_me_retrieve
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: auth_me_partial_update
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/register/:
+    post:
+      operationId: auth_register_create
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/teams/:
+    get:
+      operationId: auth_teams_list
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+          description: ''
+    post:
+      operationId: auth_teams_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Team'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+  /api/auth/teams/{id}/:
+    get:
+      operationId: auth_teams_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+    put:
+      operationId: auth_teams_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Team'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+    patch:
+      operationId: auth_teams_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTeam'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTeam'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTeam'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+    delete:
+      operationId: auth_teams_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/auth/teams/{id}/add-department/:
+    post:
+      operationId: auth_teams_add_department_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: auth_teams_add_department_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/auth/teams/{id}/remove-department/{dept_id}/:
+    post:
+      operationId: auth_teams_remove_department_create
+      parameters:
+      - in: path
+        name: dept_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: auth_teams_remove_department_destroy
+      parameters:
+      - in: path
+        name: dept_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/auth/token/refresh/:
+    post:
+      operationId: auth_token_refresh_create
+      description: Custom token refresh view that reads refresh token from httpOnly
+        cookie.
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/users/:
+    get:
+      operationId: auth_users_list
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+  /api/auth/users/{id}/:
+    get:
+      operationId: auth_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: auth_users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUpdateUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUpdateUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUpdateUser'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUpdateUser'
+          description: ''
+    patch:
+      operationId: auth_users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUpdateUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUpdateUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUpdateUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUpdateUser'
+          description: ''
+  /api/auth/users/{id}/approve/:
+    patch:
+      operationId: auth_users_approve_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: auth_users_approve_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/auth/users/{id}/assign-role/:
+    patch:
+      operationId: auth_users_assign_role_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/users/{id}/reject/:
+    patch:
+      operationId: auth_users_reject_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: auth_users_reject_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/auth/users/create/:
+    post:
+      operationId: auth_users_create_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminCreateUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminCreateUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminCreateUser'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminCreateUser'
+          description: ''
+  /api/gallery/:
+    get:
+      operationId: gallery_list
+      tags:
+      - gallery
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GalleryRead'
+          description: ''
+    post:
+      operationId: gallery_create
+      tags:
+      - gallery
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gallery'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Gallery'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Gallery'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gallery'
+          description: ''
+  /api/programs/:
+    get:
+      operationId: programs_list
+      tags:
+      - programs
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArtsProgramList'
+          description: ''
+    post:
+      operationId: programs_create
+      tags:
+      - programs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArtsProgram'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ArtsProgram'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ArtsProgram'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtsProgram'
+          description: ''
+  /api/programs/{id}/:
+    get:
+      operationId: programs_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - programs
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtsProgram'
+          description: ''
+    put:
+      operationId: programs_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - programs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArtsProgram'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ArtsProgram'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ArtsProgram'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtsProgram'
+          description: ''
+    patch:
+      operationId: programs_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - programs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedArtsProgram'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedArtsProgram'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedArtsProgram'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtsProgram'
+          description: ''
+    delete:
+      operationId: programs_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - programs
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/programs/{id}/register/:
+    post:
+      operationId: programs_register_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - programs
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/programs/active/:
+    get:
+      operationId: programs_active_list
+      tags:
+      - programs
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArtsProgramList'
+          description: ''
+  /api/programs/fests/:
+    get:
+      operationId: programs_fests_list
+      tags:
+      - programs
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArtsFest'
+          description: ''
+    post:
+      operationId: programs_fests_create
+      tags:
+      - programs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArtsFest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ArtsFest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ArtsFest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtsFest'
+          description: ''
+  /api/programs/year/{year}/:
+    get:
+      operationId: programs_year_list
+      parameters:
+      - in: path
+        name: year
+        schema:
+          type: integer
+        required: true
+      tags:
+      - programs
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArtsProgramList'
+          description: ''
+  /api/results/results/{program_id}/:
+    get:
+      operationId: results_results_retrieve
+      parameters:
+      - in: path
+        name: program_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - results
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/schedule/:
+    get:
+      operationId: schedule_list
+      tags:
+      - schedule
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Announcement'
+          description: ''
+    post:
+      operationId: schedule_create
+      tags:
+      - schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Announcement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Announcement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Announcement'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Announcement'
+          description: ''
+  /api/schedule/{id}/:
+    get:
+      operationId: schedule_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - schedule
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Announcement'
+          description: ''
+  /api/schedule/schedule/:
+    get:
+      operationId: schedule_schedule_list
+      tags:
+      - schedule
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+    post:
+      operationId: schedule_schedule_create
+      tags:
+      - schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+  /api/schedule/schedule/{id}/:
+    get:
+      operationId: schedule_schedule_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - schedule
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+    put:
+      operationId: schedule_schedule_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProgramSchedule'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+    patch:
+      operationId: schedule_schedule_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProgramSchedule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProgramSchedule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProgramSchedule'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramSchedule'
+          description: ''
+  /api/scores/:
+    get:
+      operationId: scores_list
+      tags:
+      - scores
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScoreRead'
+          description: ''
+    post:
+      operationId: scores_create
+      tags:
+      - scores
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoreUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ScoreUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ScoreUpdate'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreUpdate'
+          description: ''
+  /api/scores/{id}/:
+    get:
+      operationId: scores_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - scores
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreRead'
+          description: ''
+    put:
+      operationId: scores_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - scores
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoreUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ScoreUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ScoreUpdate'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreUpdate'
+          description: ''
+    patch:
+      operationId: scores_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - scores
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedScoreUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedScoreUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedScoreUpdate'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreUpdate'
+          description: ''
+components:
+  schemas:
+    AcademicYear:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        year:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        name:
+          type: string
+          maxLength: 100
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        is_active:
+          type: boolean
+      required:
+      - end_date
+      - id
+      - name
+      - start_date
+      - year
+    AdminCreateUser:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+        phone:
+          type: string
+          nullable: true
+          maxLength: 15
+        department:
+          type: integer
+          nullable: true
+        admission_year:
+          type: integer
+          nullable: true
+        expected_graduation_year:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        is_alumni:
+          type: boolean
+        is_dropout:
+          type: boolean
+      required:
+      - password
+      - username
+    AdminUpdateUser:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone:
+          type: string
+          nullable: true
+          maxLength: 15
+        department_id:
+          type: integer
+          nullable: true
+        admission_year_id:
+          type: integer
+          nullable: true
+        expected_graduation_year:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        is_alumni:
+          type: boolean
+        is_dropout:
+          type: boolean
+      required:
+      - username
+    Announcement:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 250
+        message:
+          type: string
+        link:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - message
+      - title
+    ArtsFest:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        year:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          description: The year the Arts Fest is conducted in.
+        max_programs_per_student:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          description: Max items a student can participate in
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        created_by:
+          type: integer
+          nullable: true
+      required:
+      - created_at
+      - end_date
+      - id
+      - name
+      - start_date
+      - updated_at
+      - year
+    ArtsProgram:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        arts_fest:
+          type: integer
+          description: The Arts Fest this program is held in.
+        arts_fest_detail:
+          allOf:
+          - $ref: '#/components/schemas/ArtsFest'
+          readOnly: true
+        eligible_batches:
+          type: array
+          items:
+            type: integer
+          description: Select the student admission-year batches allowed to participate
+            (e.g. 2023-26, 2024-27). Leave empty to allow ALL current students.
+        event_image:
+          type: string
+          format: uri
+          nullable: true
+        description:
+          type: string
+        venue:
+          type: string
+          maxLength: 200
+        max_participants:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          description: Maximum number of participants allowed
+        rules:
+          type: string
+        is_active:
+          type: boolean
+          description: Only active programs are visible to students.
+        is_graduate_restricted:
+          type: boolean
+          description: If True, alumni / graduated students cannot participate.
+        last_date:
+          type: string
+          format: date
+        is_team_based:
+          type: boolean
+        max_team_members:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        created_by:
+          type: integer
+          readOnly: true
+          nullable: true
+        created_by_name:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - arts_fest
+      - arts_fest_detail
+      - created_at
+      - created_by
+      - created_by_name
+      - description
+      - id
+      - last_date
+      - name
+      - rules
+      - updated_at
+      - venue
+    ArtsProgramList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        year:
+          type: integer
+          readOnly: true
+        arts_fest_name:
+          type: string
+          readOnly: true
+        arts_fest:
+          type: integer
+          description: The Arts Fest this program is held in.
+        eligible_batches:
+          type: array
+          items:
+            type: integer
+          description: Select the student admission-year batches allowed to participate
+            (e.g. 2023-26, 2024-27). Leave empty to allow ALL current students.
+        is_registered:
+          type: string
+          readOnly: true
+        venue:
+          type: string
+          maxLength: 200
+        max_participants:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          description: Maximum number of participants allowed
+        last_date:
+          type: string
+          format: date
+        is_active:
+          type: boolean
+          description: Only active programs are visible to students.
+        is_graduate_restricted:
+          type: boolean
+          description: If True, alumni / graduated students cannot participate.
+        is_team_based:
+          type: boolean
+        max_team_members:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        top_scores:
+          type: string
+          readOnly: true
+      required:
+      - arts_fest
+      - arts_fest_name
+      - id
+      - is_registered
+      - last_date
+      - name
+      - top_scores
+      - venue
+      - year
+    Department:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        code:
+          type: string
+          maxLength: 10
+        is_active:
+          type: boolean
+      required:
+      - code
+      - id
+      - name
+    DepartmentDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        code:
+          type: string
+          maxLength: 10
+        is_active:
+          type: boolean
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+          readOnly: true
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+          readOnly: true
+      required:
+      - code
+      - id
+      - members
+      - name
+      - teams
+    Gallery:
+      type: object
+      properties:
+        program:
+          type: integer
+          nullable: true
+        category:
+          type: array
+          items:
+            type: integer
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+          writeOnly: true
+      required:
+      - images
+    GalleryImage:
+      type: object
+      properties:
+        image:
+          type: string
+          format: uri
+      required:
+      - image
+    GalleryRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        program:
+          type: integer
+          nullable: true
+        program_name:
+          type: string
+          readOnly: true
+        category:
+          type: array
+          items:
+            type: integer
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/GalleryImage'
+          readOnly: true
+      required:
+      - id
+      - images
+      - program_name
+    PatchedAdminUpdateUser:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone:
+          type: string
+          nullable: true
+          maxLength: 15
+        department_id:
+          type: integer
+          nullable: true
+        admission_year_id:
+          type: integer
+          nullable: true
+        expected_graduation_year:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        is_alumni:
+          type: boolean
+        is_dropout:
+          type: boolean
+    PatchedArtsProgram:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        arts_fest:
+          type: integer
+          description: The Arts Fest this program is held in.
+        arts_fest_detail:
+          allOf:
+          - $ref: '#/components/schemas/ArtsFest'
+          readOnly: true
+        eligible_batches:
+          type: array
+          items:
+            type: integer
+          description: Select the student admission-year batches allowed to participate
+            (e.g. 2023-26, 2024-27). Leave empty to allow ALL current students.
+        event_image:
+          type: string
+          format: uri
+          nullable: true
+        description:
+          type: string
+        venue:
+          type: string
+          maxLength: 200
+        max_participants:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          description: Maximum number of participants allowed
+        rules:
+          type: string
+        is_active:
+          type: boolean
+          description: Only active programs are visible to students.
+        is_graduate_restricted:
+          type: boolean
+          description: If True, alumni / graduated students cannot participate.
+        last_date:
+          type: string
+          format: date
+        is_team_based:
+          type: boolean
+        max_team_members:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        created_by:
+          type: integer
+          readOnly: true
+          nullable: true
+        created_by_name:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedDepartment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        code:
+          type: string
+          maxLength: 10
+        is_active:
+          type: boolean
+    PatchedProgramSchedule:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        program:
+          type: integer
+          nullable: true
+        program_name:
+          type: string
+          readOnly: true
+        venue:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          nullable: true
+        start_at:
+          type: string
+          format: date-time
+    PatchedScoreUpdate:
+      type: object
+      properties:
+        obtained_score:
+          type: number
+          format: double
+          maximum: 100
+          minimum: 0
+    PatchedTeam:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        departments:
+          type: array
+          items:
+            type: integer
+        academic_year:
+          type: integer
+          nullable: true
+        is_active:
+          type: boolean
+    ProgramSchedule:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        program:
+          type: integer
+          nullable: true
+        program_name:
+          type: string
+          readOnly: true
+        venue:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          nullable: true
+        start_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - program_name
+      - start_at
+      - venue
+    RoleEnum:
+      enum:
+      - admin
+      - principal
+      - vice_principal
+      - teacher
+      - judge
+      - student
+      type: string
+      description: |-
+        * `admin` - Admin
+        * `principal` - Principal
+        * `vice_principal` - Vice Principal
+        * `teacher` - Teacher
+        * `judge` - Judge
+        * `student` - Student
+    ScoreRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user_name:
+          type: string
+          readOnly: true
+        program_name:
+          type: string
+          readOnly: true
+        department_name:
+          type: string
+          readOnly: true
+        obtained_score:
+          type: number
+          format: double
+          maximum: 100
+          minimum: 0
+        judge:
+          type: integer
+          nullable: true
+        judge_name:
+          type: string
+          readOnly: true
+      required:
+      - department_name
+      - id
+      - judge_name
+      - obtained_score
+      - program_name
+      - user_name
+    ScoreUpdate:
+      type: object
+      properties:
+        obtained_score:
+          type: number
+          format: double
+          maximum: 100
+          minimum: 0
+      required:
+      - obtained_score
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        departments:
+          type: array
+          items:
+            type: integer
+        academic_year:
+          type: integer
+          nullable: true
+        is_active:
+          type: boolean
+      required:
+      - departments
+      - id
+      - name
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone:
+          type: string
+          nullable: true
+          maxLength: 15
+        department:
+          allOf:
+          - $ref: '#/components/schemas/Department'
+          readOnly: true
+        role:
+          allOf:
+          - $ref: '#/components/schemas/RoleEnum'
+          readOnly: true
+        is_approved:
+          type: boolean
+          readOnly: true
+        team:
+          type: string
+          readOnly: true
+        profile_photo:
+          type: string
+          format: uri
+          nullable: true
+        admission_year:
+          type: integer
+          nullable: true
+        expected_graduation_year:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        is_alumni:
+          type: boolean
+        is_dropout:
+          type: boolean
+      required:
+      - department
+      - id
+      - is_approved
+      - role
+      - team
+      - username
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
