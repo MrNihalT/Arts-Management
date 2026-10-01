@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urlss import path
 from scores import views
 
 urlpatterns = [
